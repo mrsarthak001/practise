@@ -58,6 +58,7 @@ main()
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
+<<<<<<< HEAD
 
 
 
@@ -137,3 +138,152 @@ node *single_llist::create_node(int value)
     }
 }
  
+=======
+	{
+        case 1:
+            cout<<"Inserting Node at Beginning: "<<endl;
+            sl.insert_begin();
+            cout<<endl;
+            break;
+        case 2:
+            cout<<"Inserting Node at Last: "<<endl;
+            sl.insert_last();
+            cout<<endl;
+            break;
+        case 3:
+            cout<<"Inserting Node at a given position:"<<endl;
+            sl.insert_pos();
+            cout<<endl;
+            break;
+        case 4:
+            cout<<"Sort Link List: "<<endl;
+            sl.sort();
+            cout<<endl;
+            break;
+        case 5:
+            cout<<"Delete a particular node: "<<endl;
+            sl.delete_pos();
+            break;
+        case 6:
+            cout<<"Update Node Value:"<<endl;  
+            sl.update();
+            cout<<endl;
+            break;
+        case 7:
+            cout<<"Search element in Link List: "<<endl;
+            sl.search();
+            cout<<endl;
+            break;
+        case 8:
+            cout<<"Display elements of link list"<<endl;
+            sl.display();
+            cout<<endl;
+            break;
+        case 9:
+            cout<<"Reverse elements of Link List"<<endl;
+            sl.reverse();
+            cout<<endl;
+            break;
+        case 10:
+            cout<<"Exiting..."<<endl;
+            exit(1);
+            break;  
+        default:
+            cout<<"Wrong choice"<<endl;
+        }
+    }
+}
+>>>>>>> dev-1
+/*
+ * Inserting element in beginning
+ */
+void single_llist::insert_begin()
+{
+    int value;
+    cout<<"Enter the value to be inserted: ";
+    cin>>value;
+    struct node *temp, *p;
+    temp = create_node(value);
+    if (start == NULL)
+    {
+        start = temp;
+        start->next = NULL;
+    }
+    else
+    {
+        p = start;
+        start = temp;
+        start->next = p;
+    }
+    cout<<"Element Inserted at beginning"<<endl;
+}
+
+/*
+ * Inserting Node at last
+ */
+void single_llist::insert_last()
+{
+    int value;
+    cout<<"Enter the value to be inserted: ";
+    cin>>value;
+    struct node *temp, *s;
+    temp = create_node(value);
+    s = start;
+    while (s->next != NULL)
+    {
+        s = s->next;
+    }
+    temp->next = NULL;
+    s->next = temp;
+    cout<<"Element Inserted at last"<<endl;
+}
+
+/*
+ * Insertion of node at a given position
+ */
+void single_llist::insert_pos()
+{
+    int value, pos, counter = 0;
+    cout<<"Enter the value to be inserted: ";
+    cin>>value;
+    struct node *temp, *s, *ptr;
+    temp = create_node(value);
+    cout<<"Enter the postion at which node to be inserted: ";
+    cin>>pos;
+    int i;
+    s = start;
+    while (s != NULL)
+    {
+        s = s->next;
+        counter++;
+    }
+    if (pos == 1)
+    {
+        if (start == NULL)
+        {
+            start = temp;
+            start->next = NULL;
+        }
+        else
+        {
+            ptr = start;
+            start = temp;
+            start->next = ptr;
+        }
+    }
+    else if (pos > 1  && pos <= counter)
+    {
+        s = start;
+        for (i = 1; i < pos; i++)
+        {
+            ptr = s;
+            s = s->next;
+        }
+        ptr->next = temp;
+        temp->next = s;
+    }
+    else
+    {
+        cout<<"Positon out of range"<<endl;
+    }
+}
