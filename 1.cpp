@@ -1,6 +1,6 @@
 #include<iostream>
-#include<cstdio>
-#include<cstdlib>
+#include<stdio>
+#include<csitdlib>
 using namespace std;
 /*
  * Node Declaration
@@ -58,6 +58,7 @@ main()
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
+<<<<<<< HEAD
 	{
         case 1:
             cout<<"Inserting Node at Beginning: "<<endl;
@@ -112,3 +113,27 @@ main()
         }
     }
 }
+=======
+
+	
+       /*
+ * Creating Node
+ */
+node *single_llist::create_node(int value)
+{
+    struct node *temp, *s;
+    temp = new(struct node); 
+    if (temp == NULL)
+    {
+        cout<<"Memory not allocated "<<endl;
+        return 0;
+    }
+    else
+    {
+        temp->info = value;
+        temp->next = NULL;     
+        return temp;
+    }
+}
+ 
+>>>>>>> dev-2
