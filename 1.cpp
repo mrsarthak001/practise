@@ -61,7 +61,10 @@ main()
 <<<<<<< HEAD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> df83a6221b7ca88c0216a9429678e47660651f5b
 
 
 =======
@@ -119,6 +122,9 @@ main()
         }
     }
 }
+<<<<<<< HEAD
+>>>>>>> df83a6221b7ca88c0216a9429678e47660651f5b
+=======
 >>>>>>> df83a6221b7ca88c0216a9429678e47660651f5b
 	
        /*
@@ -130,7 +136,7 @@ node *single_llist::create_node(int value)
     temp = new(struct node); 
     if (temp == NULL)
     {
-        cout<<"Memory not allocated "<<endl;
+i        cout<<"Memory not allocated "<<endl;
         return 0;
     }
     else
@@ -141,6 +147,11 @@ node *single_llist::create_node(int value)
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+ 
+=
+>>>>>>> df83a6221b7ca88c0216a9429678e47660651f5b
 =======
  
 =
@@ -238,3 +249,196 @@ void single_llist::insert_pos()
         cout<<"Positon out of range"<<endl;
     }
 }
+
+
+/*
+ * Sorting Link List
+ */
+void single_llist::sort()
+{
+    struct node *ptr, *s;
+    int value;
+    if (start == NULL)
+    {
+        cout<<"The List is empty"<<endl;
+        return;
+    }
+    ptr = start;
+    while (ptr != NULL)
+    {
+        for (s = ptr->next;s !=NULL;s = s->next)
+        {
+            if (ptr->info > s->info)
+            {
+                value = ptr->info;
+                ptr->info = s->info;
+                s->info = value;
+            }
+        }
+        ptr = ptr->next;
+    }
+}
+
+/*
+ * Delete element at a given position
+ */
+void single_llist::delete_pos()
+{
+    int pos, i, counter = 0;
+    if (start == NULL)
+    {
+        cout<<"List is empty"<<endl;
+        return;
+    }
+    cout<<"Enter the position of value to be deleted: ";
+    cin>>pos;
+    struct node *s, *ptr;
+    s = start;
+    if (pos == 1)
+    {
+        start = s->next;
+    }
+    else
+    {
+        while (s != NULL)
+        {
+            s = s->next;
+            counter++;
+        }
+        if (pos > 0 && pos <= counter)
+        {
+            s = start;
+            for (i = 1;i < pos;i++)
+            {
+                ptr = s;
+                s = s->next;
+            }
+            ptr->next = s->next;
+        }
+        else
+        {
+            cout<<"Position out of range"<<endl;
+        }
+        free(s);
+        cout<<"Element Deleted"<<endl;
+    }
+}
+
+/*
+ * Update a given Node
+ */
+void single_llist::update()
+{
+    int value, pos, i;
+    if (start == NULL)
+    {
+        cout<<"List is empty"<<endl;
+        return;
+    }
+    cout<<"Enter the node postion to be updated: ";
+    cin>>pos;
+    cout<<"Enter the new value: ";
+    cin>>value;
+    struct node *s, *ptr;
+    s = start;
+    if (pos == 1)
+    {
+        start->info = value;
+    }
+    else
+    {
+        for (i = 0;i < pos - 1;i++)
+        {
+            if (s == NULL)
+            {
+                cout<<"There are less than "<<pos<<" elements";
+                return;
+            }
+            s = s->next;
+        }
+        s->info = value;
+    }
+    cout<<"Node Updated"<<endl;
+}
+
+/*
+ * Searching an element
+ */
+void single_llist::search()
+{
+    int value, pos = 0;
+    bool flag = false;
+    if (start == NULL)
+    {
+        cout<<"List is empty"<<endl;
+        return;
+    }
+    cout<<"Enter the value to be searched: ";
+    cin>>value;
+    struct node *s;
+    s = start;
+    while (s != NULL)
+    {
+        pos++;
+        if (s->info == value)
+        {
+            flag = true;
+            cout<<"Element "<<value<<" is found at position "<<pos<<endl;
+        }
+        s = s->next;
+    }
+    if (!flag)
+        cout<<"Element "<<value<<" not found in the list"<<endl;
+}
+
+/*
+ * Reverse Link List
+ */
+void single_llist::reverse()
+{
+    struct node *ptr1, *ptr2, *ptr3;
+    if (start == NULL)
+    {
+        cout<<"List is empty"<<endl;
+        return;
+    }
+    if (start->next == NULL)
+    {
+        return;
+    }
+    ptr1 = start;
+    ptr2 = ptr1->next;
+    ptr3 = ptr2->next;
+    ptr1->next = NULL;
+    ptr2->next = ptr1;
+    while (ptr3 != NULL)
+    {
+        ptr1 = ptr2;
+        ptr2 = ptr3;
+        ptr3 = ptr3->next;
+        ptr2->next = ptr1;
+    }
+    start = ptr2;
+}
+
+/*
+ * Display Elements of a link list
+ */
+void single_llist::display()
+{
+    struct node *temp;
+    if (start == NULL)
+    {
+        cout<<"The List is Empty"<<endl;
+        return;
+    }
+    temp = start;
+    cout<<"Elements of list are: "<<endl;
+    while (temp != NULL)
+    {
+        cout<<temp->info<<"->";
+        temp = temp->next;
+    }
+    cout<<"NULL"<<endl;
+}
+
